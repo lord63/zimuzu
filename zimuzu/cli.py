@@ -61,7 +61,8 @@ def sign():
         sys.exit("Login failed.")
 
     # We need to visit the sign page first, or you'll get 4002 status.
-    sign_page = session.get('http://www.zimuzu.tv/user/sign')
+    session.get('http://www.zimuzu.tv/user/sign')
+
     do_sign = session.get('http://www.zimuzu.tv/user/sign/dosign')
     try:
         if do_sign.json()['status'] == 1:
