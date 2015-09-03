@@ -63,9 +63,14 @@ def sign():
     # We need to visit the sign page first, or you'll get 4002 status.
     sign_page = session.get('http://www.zimuzu.tv/user/sign')
     do_sign = session.get('http://www.zimuzu.tv/user/sign/dosign')
-    # TODO: check if json is available.
-    # TODO: check wether we've signed before.
-    print do_sign.json()
-    if do_sign.json()['status'] == 1:
-        click.echo("Success! You've keep signing in {0} days".format(
-            do_sign.json()['data']))
+    try:
+        if do_sign.json()['status'] == 1:
+            click.echo("Success! You've keep signing in {0} days".format(
+                       do_sign.json()['data']))
+        # Check whether we've signed before.
+        elif do_sign.json()['status'] == 4001:
+            click.echo("You've signed today.")
+        else:
+            click.echo(do_sign.json()['info'])
+    except ValueError:
+        sys.exit("Do sign failed.")
