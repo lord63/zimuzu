@@ -52,8 +52,14 @@ def sign():
     # TODO: set log.
     login = session.post('http://www.zimuzu.tv/User/Login/ajaxLogin',
                          data=post_data)
-    print login.json()
-    # TODO: check sigin success.
+    try:
+        if login.json()['status'] == 1:
+            click.echo('Login success!')
+        else:
+            click.echo(login.json()['info'])
+    except ValueError:
+        sys.exit("Login failed.")
+
     # We need to visit the sign page first, or you'll get 4002 status.
     sign_page = session.get('http://www.zimuzu.tv/user/sign')
     do_sign = session.get('http://www.zimuzu.tv/user/sign/dosign')
