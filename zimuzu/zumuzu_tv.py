@@ -28,13 +28,13 @@ class Zimuzu(object):
         with open(conf_path) as f:
             config = json.load(f)
 
-        if config.keys() != ['account', 'password', 'log_directory']:
-            sys.exit("The config file should contain 'account', 'password' "
-                     "and 'log_directory' settings.")
-        return config['account'], config['password'], config['log_directory']
+        if config.keys() != ['account', 'password']:
+            sys.exit("The config file should contain 'account' and "
+                     "'password' settings.")
+        return config['account'], config['password']
 
     def login(self):
-        account, password, log_directory = self.get_config()
+        account, password = self.get_config()
         post_data = {
             'account': account,
             'password': password,
