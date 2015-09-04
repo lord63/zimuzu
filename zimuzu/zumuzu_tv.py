@@ -7,6 +7,7 @@ import json
 import os
 from os import path
 import sys
+import time
 
 import click
 import requests
@@ -54,6 +55,9 @@ class Zimuzu(object):
     def do_sign(self):
         # We need to visit the sign page first, or you'll get 4002 status.
         self.session.get('http://www.zimuzu.tv/user/sign')
+        # Wait for 15 seconds, or you'll get 4001 status.
+        click.echo('Wait for 15 seconds...')
+        time.sleep(15)
 
         do_sign = self.session.get('http://www.zimuzu.tv/user/sign/dosign')
         try:
