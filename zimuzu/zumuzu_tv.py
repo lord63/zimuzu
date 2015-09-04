@@ -61,7 +61,7 @@ class Zimuzu(object):
                 click.echo("Success! You've keep signing in {0} days".format(
                     do_sign.json()['data']))
             # Check whether we've signed before.
-            elif do_sign.json()['status'] == 4001:
+            elif do_sign.json()['status'] == 0:
                 click.echo("You've signed today.")
             else:
                 click.echo(do_sign.json()['info'])
