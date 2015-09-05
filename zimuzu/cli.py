@@ -18,6 +18,7 @@ def cli():
 
 @cli.command()
 def sign():
+    """Do the sign."""
     zimuzu = Zimuzu()
     zimuzu.login()
     zimuzu.do_sign()
