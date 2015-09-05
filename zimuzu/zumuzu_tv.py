@@ -29,7 +29,7 @@ class Zimuzu(object):
         with open(conf_path) as f:
             config = json.load(f)
 
-        if config.keys() != ['account', 'password']:
+        if list(config.keys()) != ['account', 'password']:
             sys.exit("The config file should contain 'account' and "
                      "'password' settings.")
         return config['account'], config['password']
